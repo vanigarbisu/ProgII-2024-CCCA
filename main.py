@@ -34,7 +34,9 @@ def administrar_grupo(nombre_grupo, grupos_dic):
                     ingresar_gasto(nombre_grupo, nombre_integrante, grupos_dic)
         elif eleccion == 3: # Se ve el diccionario completo, hay que meterle logica de total, division, etc
             print()
+            print("Detalle de gastos:\n")
             print(grupos_dic[nombre_grupo])
+            calcular_deudas(grupos_dic[nombre_grupo])
             esperar_enter()
         elif eleccion == 4:
             mostrar_pantalla_administrar = False
