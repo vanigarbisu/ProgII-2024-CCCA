@@ -36,7 +36,11 @@ def administrar_grupo(nombre_grupo, grupos_dic):
             print()
             print("Detalle de gastos:\n")
             print(grupos_dic[nombre_grupo])
-            calcular_deudas(grupos_dic[nombre_grupo])
+            calcular_deudas(grupos_dic[nombre_grupo])            
+            if  Solicitartxt()==1:
+                texto=("Detalle de gastos:\n")
+                texto+=(grupos_dic[nombre_grupo])+"\n"
+                ArmarTXT(texto)
             esperar_enter()
         elif eleccion == 4:
             mostrar_pantalla_administrar = False

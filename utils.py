@@ -1,4 +1,7 @@
 import os
+import datetime
+import tkinter as tk
+from tkinter import filedialog
 
 def limpiar_consola():
     os.system("cls")
@@ -23,6 +26,25 @@ def imprimir_pantalla_inicio():
 
     # Imprimir el marco inferior
     print('*' * ancho)
+
+def Solicitartxt():
+    return input("SELECCIONE 1 PARA IMPRIMIR DETALLE EN TXT:")
+
+def ArmarTXT(texto):
+    root = tk.Tk()
+    root.withdraw()
+    direccion = filedialog.asksaveasfilename(
+        defaultextension=".txt",
+        filetypes=[
+            ("Archivos de texto", "*.txt"),
+            ("Todos los archivos", "*.*")
+        ]
+    )
+    if direccion: 
+        with open(direccion, 'w') as file:
+            file.write(texto)
+    root.destroy() 
+
 
 def esperar_enter():
     input("\nPRESIONE ENTER PARA CONTINUAR.\n")
