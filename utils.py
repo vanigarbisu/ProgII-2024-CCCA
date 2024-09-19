@@ -105,18 +105,16 @@ def integrante_nuevo(nombre_grupo, grupos_dic):
     esperar_enter()
 
 def calcular_deudas(diccionario):
-    # Calcular los totales de cada persona
-    totales = {persona: sum(gasto[0] for gasto in lista_gastos) for persona, lista_gastos in diccionario.items()}
-    
-    # Calcular el total gastado por el grupo y el promedio por persona
+
+    totales = {persona: sum(gasto[0] for gasto in lista_gastos) for persona, lista_gastos in diccionario.items()}    
+
     total_gastado = sum(totales.values())
     num_personas = len(diccionario)
     promedio = total_gastado / num_personas
 
     print(f"\nTotal gastado por el grupo: {total_gastado:.2f}\n")
-    print(f"Promedio de gasto por persona: {promedio:.2f}")
+    print(f"Promedio de gasto por persona: {promedio:.2f}")    
     
-    # Determinar quiénes pagaron menos y quiénes pagaron más que el promedio
     deudores = []
     acreedores = []
 
@@ -124,10 +122,10 @@ def calcular_deudas(diccionario):
     for persona, total in totales.items():
         print(f"{persona} ha puesto un total de: {total:.2f}")
         diferencia = total - promedio
-        if diferencia < 0:  # Pagó menos de lo que debería
-            deudores.append((persona, -diferencia))  # La cantidad que debe (se guarda en positivo)
-        elif diferencia > 0:  # Pagó más de lo que debería
-            acreedores.append((persona, diferencia))  # La cantidad que se le debe
+        if diferencia < 0:  
+            deudores.append((persona, -diferencia))
+        elif diferencia > 0:
+            acreedores.append((persona, diferencia))
     
     # Procesar los pagos
     print("\nDeudas entre participantes:\n")
@@ -136,13 +134,10 @@ def calcular_deudas(diccionario):
         acreedor, credito = acreedores.pop(0)
         
         if deuda > credito:
-            # El deudor debe más de lo que el acreedor tiene que recibir
             print(f"{deudor} le debe a {acreedor} {credito:.2f}")
-            deudores.insert(0, (deudor, deuda - credito))  # El deudor sigue debiendo la diferencia
+            deudores.insert(0, (deudor, deuda - credito))
         elif deuda < credito:
-            # El acreedor tiene que recibir más de lo que el deudor debe
             print(f"{deudor} le debe a {acreedor} {deuda:.2f}")
-            acreedores.insert(0, (acreedor, credito - deuda))  # El acreedor sigue con saldo positivo
+            acreedores.insert(0, (acreedor, credito - deuda))
         else:
-            # La deuda es exactamente igual al crédito
             print(f"{deudor} le debe a {acreedor} {deuda:.2f}")
